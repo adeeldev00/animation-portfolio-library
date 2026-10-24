@@ -1,0 +1,1236 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-satoshi: var(--font-satoshi);
+  --font-inter: var(--font-inter);
+  --font-inter-tight: var(--font-inter-tight);
+  --font-roobert: var(--font-roobert);
+
+  --background-image-gradient-text: linear-gradient(
+    90deg,
+    #0e2467 -8.35%,
+    #2bcfa6 46.83%,
+    #fdbd5c 100%
+  );
+  --background-image-gradient-text-white-gray: linear-gradient(
+    93.2deg,
+    #ffffff 19.89%,
+    #a7a7a7 64.88%
+  );
+
+  --color-background: hsl(var(--background));
+  --color-landing-dark: hsl(var(--landing-dark));
+  --color-dark-navy: #010717;
+  --color-dark-card: #0a0b14;
+  --color-elevated: #141521;
+  --color-dark-band: #161720;
+  --color-dark-chip: #20212c;
+  --color-profit: #22c55e;
+  --color-loss: #ef4444;
+  --color-glow-blue: #5d80ff;
+  --color-danger: #fe5151;
+  --color-chart-pnl: #5dffc6;
+  --color-chart-cumulative: #8c57f3;
+  --color-chart-win: #5d9eff;
+  --color-chart-trades: #ffdf5d;
+  --color-chart-coral: #ff705d;
+  --color-chart-amber: #f9aa4b;
+  --color-chart-bg: #0d0e17;
+  --color-wallet-mint: #5dffc6;
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card-1: hsl(var(--card-1));
+  --color-card-2: hsl(var(--card-2));
+  --color-card-3: hsl(var(--card-3));
+  --color-card-4: hsl(var(--card-4));
+  --color-card-5: hsl(var(--card-5));
+  --color-card-6: hsl(var(--card-6));
+  --color-card-7: hsl(var(--card-7));
+  --color-card-8: hsl(var(--card-8));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary-1: hsl(var(--secondary-1));
+  --color-secondary-2: hsl(var(--secondary-2));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-accent-2: hsl(var(--accent-2));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+  --color-chart-6: hsl(var(--chart-6));
+
+  --color-brand-2: hsl(var(--brand-2));
+  --color-brand: hsl(var(--brand));
+  --color-brand-foreground: hsl(var(--brand-foreground));
+  --color-brand-light: hsl(var(--brand-light));
+
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  --color-green-1: hsl(var(--green-1));
+
+  --color-red-1: hsl(var(--red-1));
+
+  --color-orange-1: hsl(var(--orange-1));
+  --color-orange-2: hsl(var(--orange-2));
+
+  --color-drawer: hsl(var(--drawer));
+
+  --color-typography: hsl(var(--typography));
+
+  /* Fluid section spacing — uses min(vw, vh) so padding respects BOTH width and
+     height constraints. On a 1440×780 laptop the 8dvh cap (~62px) prevents sections
+     from eating too much vertical real estate, while 6vw governs on wide monitors. */
+  --spacing-section-y: clamp(3rem, min(6vw, 8dvh), 6.25rem); /* 48px → 100px */
+  --spacing-section-x: clamp(1rem, 7vw, 6.25rem); /* 16px → 100px */
+  --spacing-section-gap: clamp(3rem, 5vw, 6.25rem); /* 48px → 100px (column gap) */
+
+  /* Fluid mockup panel — the 570×600 feature panels */
+  --mockup-width: clamp(320px, 38vw, 570px);
+  --mockup-height: clamp(340px, 40vw, 600px);
+  /* Scale factor for absolute-positioned children inside mockup panels:
+     children were designed at 570px width, so scale = actual-width / 570 */
+  --mockup-scale: calc(min(38vw, 570px) / 570);
+
+  --color-blue-1: hsl(var(--blue-1));
+  --color-blue-2: hsl(var(--blue-2));
+  --color-blue-3: hsl(var(--blue-3));
+  --color-blue-4: hsl(var(--blue-4));
+  --color-blue-5: hsl(var(--blue-5));
+  --color-blue-6: hsl(var(--blue-6));
+  --color-blue: hsl(var(--blue));
+  --color-blue-foreground: hsl(var(--blue-foreground));
+
+  --color-gold: hsl(var(--gold));
+
+  --color-surface-1: hsl(var(--surface-1));
+  --color-surface-2: hsl(var(--surface-1));
+  --color-surface: hsl(var(--surface));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --height-15: 3.75rem;
+
+  --text-xxs: 0.5rem;
+
+  --animate-indeterminate: indeterminate 1.5s ease-in-out infinite;
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-float-up-down: float-up-down 4s ease-in-out infinite;
+  --animate-slide-left-right: slide-left-right 5s ease-in-out infinite;
+  --animate-slide-right-left: slide-right-left 5s ease-in-out infinite;
+  --animate-diagonal-left-right: diagonal-left-right 5s ease-in-out infinite;
+  --animate-diagonal-right-left: diagonal-right-left 5s ease-in-out infinite;
+  --animate-slide-upward: slide-upward 5s ease-in-out infinite;
+  --animate-diagonal-right-up: diagonal-right-up 5s ease-in-out infinite;
+  --animate-slide-horizontal: slide-horizontal 5s ease-in-out infinite;
+  --animate-shimmer: shimmer 1.5s ease-in-out infinite;
+  --animate-marquee: marquee 35s linear infinite;
+  --animate-pulse-ring: pulse-ring 3s cubic-bezier(0.2, 0.5, 0.8, 1) infinite;
+  --animate-rotate-cw: rotate-cw 24s linear infinite;
+  --animate-rotate-ccw: rotate-ccw 16s linear infinite;
+  --animate-line-shimmer: line-shimmer 1.6s linear infinite;
+  --animate-line-flow: line-flow 0.8s linear infinite;
+  @keyframes rotate-cw {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes rotate-ccw {
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.35);
+      opacity: 0.8;
+    }
+    70% {
+      opacity: 0.15;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+
+  @keyframes indeterminate {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(400%);
+    }
+  }
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  @keyframes float-up-down {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(0deg);
+    }
+  }
+  @keyframes slide-left-right {
+    0%,
+    15% {
+      transform: translateX(0) scale(1);
+    }
+    35%,
+    55% {
+      transform: translateX(30px) scale(1.15);
+    }
+    75%,
+    100% {
+      transform: translateX(0) scale(1);
+    }
+  }
+  @keyframes slide-right-left {
+    0%,
+    15% {
+      transform: translateX(0) scale(1);
+    }
+    35%,
+    55% {
+      transform: translateX(-35px) scale(1.15);
+    }
+    75%,
+    100% {
+      transform: translateX(0) scale(1);
+    }
+  }
+  @keyframes diagonal-left-right {
+    0%,
+    15% {
+      transform: translate(0, 0);
+    }
+    35%,
+    55% {
+      transform: translate(30px, 25px);
+    }
+    75%,
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+  @keyframes diagonal-right-left {
+    0%,
+    15% {
+      transform: translate(0, 0);
+    }
+    35%,
+    55% {
+      transform: translate(45px, 25px);
+    }
+    75%,
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+  @keyframes slide-upward {
+    0%,
+    15% {
+      transform: translateY(0) scale(1);
+    }
+    35%,
+    55% {
+      transform: translateY(-35px) scale(1.15);
+    }
+    75%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+  }
+  @keyframes diagonal-right-up {
+    0%,
+    15% {
+      transform: translate(0, 0);
+    }
+    35%,
+    55% {
+      transform: translate(35px, -35px);
+    }
+    75%,
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+  @keyframes slide-horizontal {
+    0%,
+    15% {
+      transform: translateX(0);
+    }
+    35%,
+    55% {
+      transform: translateX(45px);
+    }
+    75%,
+    100% {
+      transform: translateX(0);
+    }
+  }
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  @keyframes line-shimmer {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(300%);
+    }
+  }
+  @keyframes line-flow {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 20px;
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility bg-auth-pattern {
+  background-image: var(--auth-pattern-url);
+}
+
+@utility bg-brand-gradient {
+  background-image: linear-gradient(180deg, #93aaff 0%, #5d80ff 100%);
+}
+
+@utility bg-glow-blue-fade {
+  background-image: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-glow-blue) 35%, transparent) 0%,
+    transparent 100%
+  );
+}
+
+@utility line-track-active {
+  background: repeating-linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-glow-blue) 60%, transparent) 0,
+    color-mix(in srgb, var(--color-glow-blue) 60%, transparent) 5px,
+    transparent 5px,
+    transparent 10px
+  );
+  background-size: 2px 20px;
+}
+
+@utility line-track-idle {
+  background: repeating-linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-foreground) 10%, transparent) 0,
+    color-mix(in srgb, var(--color-foreground) 10%, transparent) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+/* Page / modal title gradient — white → white/50% (used by page titles
+   like "Journal", "Analytics" and the Advanced Filtering modal header). */
+@utility text-title-gradient {
+  background-image: linear-gradient(270deg, rgba(255, 255, 255, 0.5) 0%, #ffffff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* v2 landing sections: 1240px content + 100px side padding = 1440px Figma frame */
+@utility section-shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1440px;
+}
+
+/* Fluid landing section padding — replaces rigid px-4 py-[80px] sm:px-8 lg:px-[100px] lg:py-[100px].
+   Scales smoothly from mobile (16px/48px) to Figma desktop (100px) without breakpoint jumps. */
+@utility section-pad-x {
+  padding-inline: var(--spacing-section-x);
+}
+
+@utility section-pad-y {
+  padding-block: var(--spacing-section-y);
+}
+
+@utility section-pad {
+  padding-inline: var(--spacing-section-x);
+  padding-block: var(--spacing-section-y);
+}
+
+/* Fluid mockup panel container — replaces width:570px height:600px inline styles */
+@utility mockup-panel {
+  position: relative;
+  width: var(--mockup-width);
+  height: var(--mockup-height);
+  flex-shrink: 0;
+}
+
+/* Above-the-fold slide-up on page load (hero) — scroll reveals use DirectionalReveal instead */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility animate-rise-in {
+  animation: rise-in 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* Hide native number-input spinners (Chrome, Safari, Firefox) */
+@utility no-spinner {
+  appearance: textfield;
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+}
+
+@layer utilities {
+  html {
+    /* Native browser smooth scroll for anchor links (#how-it-works etc.).
+       Disabled for users who prefer reduced motion. */
+    scroll-behavior: smooth;
+    @media (prefers-reduced-motion: reduce) {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: clip;
+  }
+}
+
+@layer utilities {
+  img,
+  video {
+    max-width: unset;
+    height: unset;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --landing-dark: 234 50% 4%;
+    --foreground: 210 33% 9%;
+    --card: 0 0% 100%;
+    --card-1: 238 51% 15%;
+    --card-2: 226 51% 8%;
+    --card-3: 238 45% 12%;
+    --card-4: 223 50% 22%;
+    --card-5: 242 35% 15%;
+    --card-6: 225 76% 23%;
+    --card-7: 223 24% 21%;
+    --card-8: 270, 100%, 99%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --secondary-1: 0 0% 42%;
+    --secondary-2: 0 0% 66%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --chart-6: 209 100% 52%;
+    --radius: 0.5rem;
+    --brand: 220 94% 21%;
+    --brand-2: 235 100% 50%;
+    --brand-forground: 0 0% 100%;
+    --brand-light: 233 50% 22%;
+    --accent-2: 54 99% 54;
+    --sidebar-background: 225 76% 23%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+    --green-1: 165 72% 41%;
+    --red-1: 359 70% 47%;
+    --orange-1: 30 100% 50%;
+    --orange-2: 33 93% 53%;
+    --drawer: 228 59% 9%;
+    --typography: 226 51% 5%;
+    --blue: 225 76% 23%;
+    --blue-3: 228, 37%, 13%;
+    --blue-foreground: 220 100% 98%;
+    --blue-1: 222 100% 96%;
+    --blue-2: 227, 66%, 32%;
+    --blue-4: 229, 51%, 8%;
+    --blue-5: 215, 100%, 96%;
+    --blue-6: 228, 64%, 33%;
+    --gold: 36 98% 66%;
+    --surface: 0, 0%, 97%;
+    --surface-1: 0, 0%, 94%;
+    --surface-2: 220, 4%, 86%;
+  }
+
+  .dark {
+    --background: 234 50% 4%;
+    --foreground: 0 0% 98%;
+    --card: 234 33% 6%;
+    --card-1: 238 51% 15%;
+    --card-2: 226 51% 8%;
+    --card-3: 238 45% 12%;
+    --card-4: 223 50% 22%;
+    --card-5: 242 38% 15%;
+    --card-6: 226 62% 8%;
+    --card-7: 223 24% 21%;
+    --card-foreground: 0 0% 98%;
+    --popover: 235 25% 10%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 66%;
+    --secondary-foreground: 0 0% 98%;
+    --secondary-1: 0 0% 42%;
+    --secondary-2: 0 0% 66%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --chart-6: 209 100% 52%;
+    --brand: 220 94% 21%;
+    --brand-2: 235 100% 50%;
+    --brand-forground: 0 0% 100%;
+    --brand-light: 233 50% 22%;
+    --accent-2: 54 99% 54;
+    --sidebar-background: 234 50% 4%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+    --green-1: 142 71% 45%;
+    --red-1: 0 84% 60%;
+    --orange-1: 30 100% 50%;
+    --orange-2: 33 93% 53%;
+    --typography: 226 51% 5%;
+    --blue: 225 76% 23%;
+    --blue-foreground: 220 100% 98%;
+    --blue-1: 222 100% 96%;
+    --blue-2: 227, 66%, 32%;
+    --blue-3: 228, 37%, 13%;
+    --blue-4: 229, 51%, 8%;
+    --blue-5: 215, 100%, 96%;
+    --blue-6: 228, 64%, 33%;
+    --gold: 36 98% 66%;
+    --surface: 226, 62%, 8%;
+    --surface-1: 238, 46%, 10%;
+    --surface-2: 238, 46%, 13%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ─── RainbowKit theme ────────────────────────────────────────────────────────
+   RainbowKitProvider injects a <style> tag targeting [data-rk] (specificity
+   0,0,1,0).  We need specificity 0,0,1,1 to win → use "html [data-rk]".
+   The theme prop (darkTheme/lightTheme) sets accent, radius, fontStack, blur.
+   These selectors handle everything the theme API can't: modal bg, text colors,
+   hover tints, Satoshi font, and custom shadows.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Shared overrides (auto-adapt via app CSS vars) ── */
+html [data-rk] {
+  /* Font — Satoshi matches the rest of the app */
+  --rk-fonts-body: var(--font-satoshi), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Modal background tracks app card color:
+     dark → hsl(238 46% 13%) ≈ #121330   light → hsl(0 0% 100%) = #fff */
+  --rk-colors-modalBackground: hsl(var(--card));
+  --rk-colors-modalText: hsl(var(--foreground));
+  --rk-colors-modalBorder: hsl(var(--border));
+
+  /* Connect-button chip */
+  --rk-colors-connectButtonBackground: hsl(var(--card));
+  --rk-colors-connectButtonText: hsl(var(--foreground));
+  --rk-colors-connectButtonBackgroundError: #ef4444;
+  --rk-colors-connectButtonTextError: #ffffff;
+
+  /* Borders */
+  --rk-colors-generalBorder: hsl(var(--border));
+
+  /* Wallet list hover — brand-tinted */
+  --rk-colors-menuItemBackground: rgba(22, 93, 255, 0.08);
+  --rk-colors-profileActionHover: rgba(22, 93, 255, 0.1);
+
+  /* Selected wallet highlight */
+  --rk-colors-selectedOptionBorder: rgba(22, 93, 255, 0.4);
+
+  /* Status dots */
+  --rk-colors-connectionIndicator: #22c55e;
+  --rk-colors-standby: #f59e0b;
+  --rk-colors-error: #ef4444;
+}
+
+/* ── Dark-mode specific ── */
+html.dark [data-rk] {
+  --rk-colors-modalBackdrop: rgba(0, 4, 20, 0.75);
+  --rk-colors-modalTextSecondary: rgba(255, 255, 255, 0.52);
+  --rk-colors-modalTextDim: rgba(255, 255, 255, 0.24);
+
+  --rk-colors-generalBorderDim: rgba(255, 255, 255, 0.03);
+  --rk-colors-actionButtonBorder: rgba(255, 255, 255, 0.08);
+  --rk-colors-actionButtonBorderMobile: rgba(255, 255, 255, 0.1);
+  --rk-colors-actionButtonSecondaryBackground: rgba(255, 255, 255, 0.06);
+
+  --rk-colors-closeButton: rgba(255, 255, 255, 0.5);
+  --rk-colors-closeButtonBackground: rgba(255, 255, 255, 0.06);
+  --rk-colors-connectButtonInnerBackground: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.09)
+  );
+
+  --rk-colors-profileForeground: rgba(255, 255, 255, 0.03);
+  --rk-colors-profileAction: rgba(255, 255, 255, 0.05);
+
+  --rk-colors-downloadTopCardBackground:
+    linear-gradient(135deg, rgba(22, 93, 255, 0.14) 0%, transparent 70%), hsl(var(--card));
+  --rk-colors-downloadBottomCardBackground:
+    linear-gradient(135deg, transparent 30%, rgba(22, 93, 255, 0.08) 100%), hsl(var(--card));
+
+  --rk-shadows-dialog: 0px 16px 56px rgba(0, 4, 20, 0.8), 0px 0px 0px 1px rgba(255, 255, 255, 0.07);
+  --rk-shadows-selectedWallet: 0px 2px 14px rgba(22, 93, 255, 0.3);
+  --rk-shadows-selectedOption: 0px 2px 8px rgba(0, 0, 0, 0.4);
+  --rk-shadows-walletLogo: 0px 2px 10px rgba(0, 0, 0, 0.5);
+  --rk-shadows-profileDetailsAction: 0px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Light-mode specific ── */
+html.light [data-rk] {
+  /* Backdrop: cool blue-navy tint + frosted-glass blur */
+  --rk-colors-modalBackdrop: rgba(8, 18, 52, 0.35);
+  --rk-blurs-modalOverlay: blur(12px);
+
+  /* Secondary/dim text — dark navy at reduced opacity */
+  --rk-colors-modalTextSecondary: rgba(15, 25, 65, 0.52);
+  --rk-colors-modalTextDim: rgba(15, 25, 65, 0.32);
+
+  --rk-colors-generalBorderDim: rgba(0, 0, 0, 0.04);
+  --rk-colors-actionButtonBorder: rgba(22, 93, 255, 0.12);
+  --rk-colors-actionButtonBorderMobile: rgba(22, 93, 255, 0.14);
+  --rk-colors-actionButtonSecondaryBackground: rgba(22, 93, 255, 0.04);
+
+  --rk-colors-closeButton: rgba(15, 25, 65, 0.42);
+  --rk-colors-closeButtonBackground: rgba(0, 0, 0, 0.05);
+  --rk-colors-connectButtonInnerBackground: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.02),
+    rgba(0, 0, 0, 0.05)
+  );
+
+  --rk-colors-profileForeground: rgba(0, 0, 0, 0.02);
+  --rk-colors-profileAction: hsl(var(--muted));
+  /* Wallet row hover — very subtle blue tint */
+  --rk-colors-menuItemBackground: rgba(22, 93, 255, 0.06);
+
+  --rk-colors-downloadTopCardBackground:
+    linear-gradient(135deg, rgba(22, 93, 255, 0.06) 0%, transparent 70%), #ffffff;
+  --rk-colors-downloadBottomCardBackground:
+    linear-gradient(135deg, transparent 30%, rgba(22, 93, 255, 0.04) 100%), #ffffff;
+
+  /* Elevated dialog shadow — card lifts clearly off frosted backdrop */
+  --rk-shadows-dialog:
+    0px 4px 16px rgba(8, 18, 52, 0.08), 0px 16px 48px rgba(8, 18, 52, 0.12),
+    0px 0px 0px 1px hsl(var(--border));
+  --rk-shadows-selectedWallet: 0px 2px 10px rgba(22, 93, 255, 0.18);
+  --rk-shadows-selectedOption: 0px 2px 6px rgba(0, 0, 0, 0.08);
+  --rk-shadows-walletLogo: 0px 2px 8px rgba(0, 0, 0, 0.08);
+  --rk-shadows-profileDetailsAction: 0px 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #a8a8a8 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #a8a8a8;
+  border-radius: 12px;
+  border: 6px solid transparent;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 10px !important;
+  border: none !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+#nprogress .spinner {
+  display: none !important;
+}
+
+.gradient-text {
+  background: linear-gradient(89.99deg, #0e2467 -20.42%, #2bcfa6 39.79%, #fdbd5c 99.99%);
+}
+
+.rdp-cell {
+  background-color: transparent !important;
+}
+
+.rdp-day:not([aria-selected='true']) {
+  background-color: transparent !important;
+}
+
+.dark .rdp-cell {
+  background-color: transparent !important;
+}
+
+.dark .rdp-day:not([aria-selected='true']) {
+  background-color: transparent !important;
+}
+
+.rdp-day button {
+  background-color: transparent !important;
+  border-radius: 50% !important;
+  transition: all 0.2s ease !important;
+}
+
+.rdp-day button:hover {
+  background-color: transparent !important;
+  border-radius: 50% !important;
+}
+
+.rdp-day button:focus {
+  background-color: transparent !important;
+  border-radius: 50% !important;
+  outline: none !important;
+}
+
+.dark .rdp-day button {
+  background-color: transparent !important;
+  border-radius: 50% !important;
+}
+
+.dark .rdp-day button:hover {
+  background-color: transparent !important;
+  border-radius: 50% !important;
+}
+
+.dark .rdp-day button:focus {
+  background-color: transparent !important;
+  border-radius: 50% !important;
+}
+
+.rdp-nav_button {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  background-color: transparent !important;
+  border: 1px solid hsl(var(--border)) !important;
+}
+
+.rdp-nav_button:hover {
+  opacity: 1 !important;
+  background-color: hsl(var(--accent)) !important;
+  color: hsl(var(--accent-foreground)) !important;
+}
+
+.rdp-nav_button:focus {
+  outline: 2px solid rgba(59, 130, 246, 0.5) !important;
+}
+
+.rdp-nav,
+.rdp-caption,
+.rdp-nav_button,
+.rdp-nav_button_previous,
+.rdp-nav_button_next {
+  background-color: initial !important;
+}
+
+.rdp-nav button {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+.rdp-table {
+  background-color: transparent !important;
+}
+
+.rdp-tbody {
+  background-color: transparent !important;
+}
+
+.rdp-row {
+  background-color: transparent !important;
+}
+
+.rdp-day[class*='ghost'] {
+  background-color: transparent !important;
+}
+
+.rdp-day[class*='ghost']:hover {
+  background-color: transparent !important;
+}
+
+.rdp-day[class*='ghost']:focus {
+  background-color: transparent !important;
+}
+
+.driver-popover.driverjs-theme {
+  background-color: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: var(--radius) !important;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05),
+    0 0 0 1px hsl(var(--border) / 0.1) !important;
+  padding: 20px !important;
+  min-width: 300px !important;
+  max-width: 400px !important;
+}
+
+.driver-popover.driverjs-theme .driver-popover-title {
+  font-family: inherit !important;
+  font-size: 1.125rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.5rem !important;
+  color: hsl(var(--foreground)) !important;
+  line-height: 1.5 !important;
+}
+
+.driver-popover.driverjs-theme .driver-popover-description {
+  font-family: inherit !important;
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+  color: hsl(var(--muted-foreground)) !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.driver-popover.driverjs-theme button {
+  font-family: inherit !important;
+  border-radius: var(--radius) !important;
+  font-weight: 500 !important;
+  font-size: 0.875rem !important;
+  padding: 0.5rem 1rem !important;
+  transition: all 0.2s ease !important;
+  outline: none !important;
+  border: 1px solid transparent !important;
+}
+
+.driver-popover.driverjs-theme .driver-popover-close-btn {
+  color: hsl(var(--muted-foreground)) !important;
+  transition: color 0.2s ease !important;
+  padding: 4px !important;
+  border-radius: 4px !important;
+}
+
+.driver-popover.driverjs-theme .driver-popover-close-btn:hover {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--accent)) !important;
+}
+
+.driver-popover.driverjs-theme .driver-popover-footer {
+  margin-top: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.driver-popover.driverjs-theme .driver-popover-next-btn {
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+  border: 1px solid hsl(var(--primary)) !important;
+}
+
+.driver-popover.driverjs-theme .driver-popover-next-btn:hover {
+  opacity: 0.9 !important;
+}
+
+.driver-popover.driverjs-theme .driver-popover-prev-btn {
+  background-color: transparent !important;
+  color: hsl(var(--muted-foreground)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+}
+
+.driver-popover.driverjs-theme .driver-popover-prev-btn:hover {
+  background-color: hsl(var(--accent)) !important;
+  color: hsl(var(--accent-foreground)) !important;
+}
+
+.driver-popover.driverjs-theme .driver-popover-progress-text {
+  color: hsl(var(--muted-foreground)) !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+}
+
+.driver-popover.driverjs-theme .driver-popover-arrow-side-left.driver-popover-arrow {
+  border-left-color: hsl(var(--card)) !important;
+}
+
+.driver-popover.driverjs-theme .driver-popover-arrow-side-right.driver-popover-arrow {
+  border-right-color: hsl(var(--card)) !important;
+}
+
+.driver-popover.driverjs-theme .driver-popover-arrow-side-top.driver-popover-arrow {
+  border-top-color: hsl(var(--card)) !important;
+}
+
+.driver-popover.driverjs-theme .driver-popover-arrow-side-bottom.driver-popover-arrow {
+  border-bottom-color: hsl(var(--card)) !important;
+}
+
+.dark .driver-popover.driverjs-theme {
+  border-color: hsl(var(--gold)) !important;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2) !important;
+}
+
+.dark .driver-popover.driverjs-theme .driver-popover-title {
+  color: hsl(var(--gold)) !important;
+}
+
+.dark .driver-popover.driverjs-theme .driver-popover-next-btn {
+  background-color: hsl(var(--gold)) !important;
+  color: #000000 !important;
+  border: 1px solid hsl(var(--gold)) !important;
+}
+
+.dark .driver-popover.driverjs-theme .driver-popover-next-btn:hover {
+  background-color: hsl(var(--gold)) !important;
+  opacity: 1 !important;
+}
+
+.dark .driver-popover.driverjs-theme .driver-popover-prev-btn:hover {
+  background-color: hsl(var(--gold)) !important;
+  color: hsl(var(--gold-foreground)) !important;
+  border-color: hsl(var(--gold)) !important;
+}
+
+/* ─── Lexical Notebook Editor ──────────────────────────────────────────── */
+
+/* Content area */
+.nb-content {
+  caret-color: hsl(var(--foreground));
+}
+.nb-content:focus {
+  outline: none;
+}
+
+/* Block types */
+.nb-p {
+  margin-bottom: 0.6rem;
+  line-height: 1.75;
+}
+.nb-h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 1.5rem 0 0.6rem;
+}
+.nb-h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 1.25rem 0 0.5rem;
+}
+.nb-h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 1rem 0 0.4rem;
+}
+
+/* Blockquote */
+.nb-blockquote {
+  border-left: 3px solid hsl(var(--primary));
+  background: hsl(var(--muted) / 0.4);
+  border-radius: 0 6px 6px 0;
+  padding: 0.75rem 1rem;
+  margin: 0 0 0.75rem;
+  color: hsl(var(--muted-foreground));
+}
+
+/* Lists */
+.nb-ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.nb-ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.nb-li {
+  margin-bottom: 0.25rem;
+  line-height: 1.65;
+}
+
+/* Checklist */
+.nb-li-checked {
+  position: relative;
+  padding-left: 1.5rem;
+  list-style: none;
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+.nb-li-unchecked {
+  position: relative;
+  padding-left: 1.5rem;
+  list-style: none;
+}
+.nb-li-checked::before,
+.nb-li-unchecked::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.25rem;
+  width: 1rem;
+  height: 1rem;
+  border: 1.5px solid hsl(var(--border));
+  border-radius: 3px;
+  background: transparent;
+}
+.nb-li-checked::before {
+  background: hsl(var(--primary));
+  border-color: hsl(var(--primary));
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Inline text styles */
+.nb-bold {
+  font-weight: 700;
+}
+.nb-italic {
+  font-style: italic;
+}
+.nb-underline {
+  text-decoration: underline;
+}
+.nb-strikethrough {
+  text-decoration: line-through;
+}
+
+/* Inline code */
+.nb-code-inline {
+  font-family: ui-monospace, 'Cascadia Code', Menlo, monospace;
+  background: hsl(var(--muted));
+  border-radius: 4px;
+  padding: 0.1em 0.4em;
+  font-size: 0.85em;
+}
+
+/* Code block */
+.nb-code-block {
+  font-family: ui-monospace, 'Cascadia Code', Menlo, monospace;
+  background: hsl(var(--muted));
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  margin: 0 0 0.75rem;
+  font-size: 0.85em;
+  display: block;
+  white-space: pre;
+}
+
+/* Links */
+.nb-link {
+  color: hsl(var(--brand));
+  text-decoration: underline;
+  cursor: pointer;
+}
+.nb-link:hover {
+  opacity: 0.8;
+}
+
+/* @uiw/react-color dark theme */
+.cj-color-picker .w-color-sketch {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 12px !important;
+}
+.cj-color-picker .w-color-saturation {
+  border-radius: 6px !important;
+  margin-bottom: 8px !important;
+}
+.cj-color-picker .w-color-editable-input input {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #fff !important;
+  border-radius: 6px !important;
+}
+.cj-color-picker .w-color-editable-input label {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+.cj-color-picker .w-color-sketch-presets-color {
+  border-radius: 50% !important;
+  border: 2px solid transparent !important;
+  transition:
+    border-color 0.15s,
+    transform 0.15s !important;
+}
+.cj-color-picker .w-color-sketch-presets-color:hover {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  transform: scale(1.12) !important;
+}
